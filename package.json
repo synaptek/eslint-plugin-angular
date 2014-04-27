@@ -1,0 +1,45 @@
+{
+  "name": "angular-lint",
+  "description": "Set of ESLint rules to lint source code that uses the angular framework.",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Nate-Wilkins/angular-lint",
+  "author": {
+    "name": "Nate-Wilkins",
+    "email": "nwilkins2012@gmail.com",
+    "url": "https://github.com/Nate-Wilkins"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nate-Wilkins/angular-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nate-Wilkins/angular-lint/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/Nate-Wilkins/angular-lint/blob/master/LICENSE-MIT"
+    }
+  ],
+  "dependencies": { },
+  "peerDependencies": { },
+  "devDependencies": {
+    "chai": "*",
+    "sinon": "*",
+    "load-grunt-tasks": "*",
+
+    "grunt": "*",
+    "grunt-simple-mocha": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-clean": "*",
+
+    "eslint": "*",
+    "eslint-tester": "*"
+  },
+  "keywords": [
+    "angular-lint"
+  ]
+}
