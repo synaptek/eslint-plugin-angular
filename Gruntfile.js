@@ -34,11 +34,11 @@ module.exports = function (grunt) {
 
 		eslint: {
 			options: {
+				config: './eslint.json',
 				rulesdir: "./rules"
 			},
-			target: [
-				"./**/*.js",
-				"!" + "./node_modules/**/*.js"
+			angular: [
+				"./tests/angular/**/*.js"
 			]
 		}
 	};

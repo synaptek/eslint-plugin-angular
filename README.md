@@ -16,9 +16,10 @@ Lint to enforce the dependency injection notation, return values for a service, 
 - `angular-di-notation`: Validates that all angular dependency injection notations are initialized the same
 	- args
 		- [0] on/off {number*}: Tells ESLint if this rule is on or off
-		- [1] notations {string="arr"}: Specifies the dependency injection notations to be arrays ("arr") or functions ("fn")
-		- [2] sameID {boolean=true}: When using array notation this option specifies if the function parameters should be the same name as their dependency notation
-		- N/A [3] inline {boolean=true}: Specifies if the dependency injection notation should be inline or defined in a variable
+		- [1] notation {string="arr"}: Specifies the dependency injection notations to be arrays ("arr") or functions ("fn")
+		- [2] sameID {boolean=true}: When using array notation this option specifies if the function parameters should be the same name as their dependency notation (Only applicable to notation="arr")
+		- [3] ignoreEmpty {boolean=true}: Specifies if the dependency injection notation can be a function if it's not requiring any dependencies (Only applicable to notation="arr")
+		- N/A [4] inline {boolean=true}: Specifies if the dependency injection notation should be inline or defined through a variable (Only applicable to notation="arr")
 
 - N/A `angular-service`: Validates that all angular services are a certain type
 	- args
@@ -52,7 +53,13 @@ $ npm install angular-lint
 $ N/A bower install angular-lint
 ```
 
-####Why?
+####Todo:
+- Update tests
+- Unify valid and invalid tests (be more coherent)
+- Implement N/A rules
+- Add 'inline' rule argument to 'angular-di-notation'
+
+####Other
 
 [![downloads](http://img.shields.io/npm/dm/angular-lint.svg)](https://www.npmjs.org/package/angular-lint)
 [![stories](https://badge.waffle.io/Nate-Wilkins/angular-lint.png)](http://waffle.io/nate-wilkins/angular-lint)

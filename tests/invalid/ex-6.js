@@ -1,12 +1,11 @@
 /**
  * angular-lint invalid ex-6
- * @args: []
+ * @args: ["arr", true, false]
  * @globals: [angular]
  * @errors:
  * - Errors.DINotation.ToBeArray@FunctionExpression
  *
  * @description:
- * Tests the default args to be ["arr", true]
  * Tests that the provider's $get function is also tested for di-notation - Assignment
  */
 

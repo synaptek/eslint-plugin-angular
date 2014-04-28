@@ -1,29 +1,24 @@
 /**
  * angular-lint invalid ex-5
- * @args: []
+ * @args: ["arr", true, true]
  * @globals: [angular]
  * @errors:
  * - Errors.DINotation.ToBeArray@FunctionExpression
  *
  * @description:
- * Tests the default args to be ["arr", true]
- * Tests that the provider's $get function is also tested for di-notation
+ * Tests that the decorator function is tested for the correct di-notation
  */
 
 var angular = {
 	module: function () {
 		return {
-			provider: function () {
+			decorator: function () {
 
 			}
 		};
 	}
 };
 
-angular.module('app').provider('MyService', function () {
-	return {
-		$get: function () {
+angular.module('app').decorator('inputDirective', function ($delegate) {
 
-		}
-	};
 });

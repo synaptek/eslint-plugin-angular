@@ -31,7 +31,9 @@ var Errors = {
 var rule = module.exports = function (context) {
 	var config = {
 		notation: context.options[0] === "arr" || context.options[0] === "fn" ? context.options[0] : "arr",
-		sameID: context.options[1] !== undefined ? context.options[1] : true
+		sameID: context.options[1] !== undefined ? context.options[1] : true,
+		ignoreEmpty: context.options[2] !== undefined ? context.options[2] : true,
+		inline: context.options[3] !== undefined ? context.options[3] : true
 	};
 
 	var validateNotation = function (diNotationNode) {
@@ -39,6 +41,9 @@ var rule = module.exports = function (context) {
 		if (diNotationNode.type !== "ArrayExpression") {
 			// DI Notation: FunctionExpression
 			if (config.notation === "arr") {
+				if (diNotationNode.type === "FunctionExpression" && diNotationNode.params.length === 0 && config.ignoreEmpty) {
+					return null;
+				}
 				return context.report(diNotationNode, Errors.DINotation.ToBeArray);
 			}
 			if (diNotationNode.type !== "FunctionExpression") {
@@ -92,29 +97,52 @@ var rule = module.exports = function (context) {
 	var nodeTypes = {
 		"CallExpression": {
 			selector: function (node) {
-				return node.callee.name || node.callee.property.name;
+				return node.callee.name || (node.callee.property ? node.callee.property.name : "");
 			},
 			options: {
 				"config": {
 					is: function (node) {
-						return node.arguments[0].type === "ArrayExpression" || 	node.arguments[0].type === "FunctionExpression";
+						return node.arguments[0].type === "ArrayExpression" ||
+							node.arguments[0].type === "FunctionExpression";
 					},
 					validate: function (node) {
 						return validateNotation(node.arguments[0]);
 					}
 				},
-				"run": "config",
 
-				"controller": {
+				"invoke": {
 					is: function (node) {
-						return node.arguments[0].type === "Literal" &&
-							node.arguments[1].type === "ArrayExpression" ||
-							node.arguments[1].type === "FunctionExpression";
+						return node.arguments.length >= 2 &&
+							node.callee.object &&
+							node.callee.object.name &&
+							node.callee.object.name === "$injector" &&
+							node.arguments[0].type === "Literal" &&
+								(node.arguments[1].type === "ArrayExpression" ||
+								node.arguments[1].type === "FunctionExpression");
 					},
 					validate: function (node) {
 						return validateNotation(node.arguments[1]);
 					}
 				},
+
+				"controller": {
+					is: function (node) {
+						return node.arguments.length >= 2 &&
+							node.arguments[0].type === "Literal" &&
+							(node.arguments[1].type === "ArrayExpression" ||
+								node.arguments[1].type === "FunctionExpression");
+					},
+					validate: function (node) {
+						return validateNotation(node.arguments[1]);
+					}
+				},
+
+				"run": "config",
+
+				"annotate": "invoke",
+
+				"decorator": "controller",
+				"directive": "controller",
 				"service": "controller",
 				"factory": "controller"
 			}
@@ -126,7 +154,10 @@ var rule = module.exports = function (context) {
 			options: {
 				"$get": {
 					is: function (node) {
-						return node.operator === "=" && node.left.type === "MemberExpression" && node.left.object.type === "ThisExpression" && node.left.property.type === "Identifier";
+						return node.operator === "=" &&
+							node.left.type === "MemberExpression" &&
+							node.left.object.type === "ThisExpression" &&
+							node.left.property.type === "Identifier";
 					},
 					validate: function (node) {
 						validateNotation(node.right);
@@ -152,13 +183,14 @@ var rule = module.exports = function (context) {
 					validate: function (node) {
 						return validateNotation(node);
 					}
-				}
+				},
+				"controller": "$get"
 			}
 		}
 	};
 
 	var executeOption = function (option, node) {
-		if (option && option.is(node)) {
+		if (option && option.is && option.is(node)) {
 			return option.validate(node);
 		}
 		return null;
