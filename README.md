@@ -21,6 +21,11 @@ Lint to enforce the dependency injection notation, return values for a service, 
 		- [3] ignoreEmpty {boolean=true}: Specifies if the dependency injection notation can be a function if it's not requiring any dependencies (Only applicable to notation="arr")
 		- N/A [4] inline {boolean=true}: Specifies if the dependency injection notation should be inline or defined through a variable (Only applicable to notation="arr")
 
+- N/A `angular-directive`: Validates that all angular directives are a certain type (declared similarly)
+	- args
+		- [0] on/off {number*}: Tells ESLint if this rule is on or off
+		- [1] type {string="object"}: Which type should the service return
+
 - N/A `angular-service`: Validates that all angular services are a certain type
 	- args
 		- [0] on/off {number*}: Tells ESLint if this rule is on or off

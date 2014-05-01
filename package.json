@@ -1,7 +1,7 @@
 {
   "name": "angular-lint",
   "description": "Set of ESLint rules to lint source code that uses the angular framework.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/Nate-Wilkins/angular-lint",
   "author": {
     "name": "Nate-Wilkins",
