@@ -24,7 +24,7 @@ Lint to enforce the dependency injection notation, return values for a service, 
 - N/A `angular-directive`: Validates that all angular directives are a certain type (declared similarly)
 	- args
 		- [0] on/off {number*}: Tells ESLint if this rule is on or off
-		- [1] type {string="object"}: Which type should the service return
+		- [1] type {string="object"}: Which type should the directive return
 
 - N/A `angular-service`: Validates that all angular services are a certain type
 	- args

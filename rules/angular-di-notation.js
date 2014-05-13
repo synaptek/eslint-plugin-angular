@@ -47,7 +47,7 @@ var rule = module.exports = function (context) {
 			if (!option) { return null; }
 
 			var validator = type[option];
-			while (typeof validator === 'string') { validator = this[validator]; }
+			while (typeof validator === 'string') { validator = type[validator]; }
 			if (typeof validator !== 'function' || !validator(node)) { return null; }
 			return option;
 		},

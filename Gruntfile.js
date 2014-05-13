@@ -29,7 +29,12 @@ module.exports = function (grunt) {
 				ui: 'bdd',
 				reporter: 'tap'
 			},
-			all: ['tests/**/*.js']
+			constant: "tests/constant",
+			dinotation: "tests/di-notation",
+			factory: "tests/factory",
+			provider: "tests/provider",
+			service: "tests/service",
+			value: "tests/value"
 		},
 
 		eslint: {

@@ -3,7 +3,7 @@
  * @fileoverview
  * @author Nate Wilkins
  */
-//"use strict";
+"use strict";
 
 var selectors = module.exports = {
 	is: function (node) {
@@ -20,23 +20,17 @@ var selectors = module.exports = {
 			};
 
 		if (typeof selectedOption === 'function') {
+			var context = { yield: function (option) { if (confirm(option)) { selectedOptions.push(option); } } };
+
 			for (var o in type.options) {
 				if (!type.options.hasOwnProperty(o)) { continue; }
-
-				var context = {
-					yield: function (option) {
-						if (confirm(option)) { selectedOptions.push(option); }
-					}
-				};
 
 				var result = selectedOption.call(context, o, node);
 				if (typeof result === 'string' && confirm(result)) {
 					selectedOptions.push(result);
 				}
 
-				return selectedOptions.length === 1
-					? selectedOptions[0]
-					: (selectedOptions.length <= 0 ? null : selectedOptions);
+				return selectedOptions.length === 1 ? selectedOptions[0] : (selectedOptions.length <= 0 ? null : selectedOptions);
 			}
 		}
 

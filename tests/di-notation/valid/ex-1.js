@@ -7,8 +7,6 @@
  *
  */
 
-var define = function () {};
-
 define([
 	'_',
 	'app'
