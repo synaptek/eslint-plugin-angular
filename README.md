@@ -1,18 +1,17 @@
-angular-lint
-===========
+# angular-lint
 [![npm](http://img.shields.io/npm/v/angular-lint.svg)](https://www.npmjs.org/package/angular-lint)
 [![license](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Nate-Wilkins/angular-lint/blob/master/LICENSE-MIT)
 [![travis](https://travis-ci.org/Nate-Wilkins/angular-lint.png)](https://travis-ci.org/Nate-Wilkins/angular-lint)
 [![deps](https://david-dm.org/nate-wilkins/angular-lint.png)](https://david-dm.org/nate-wilkins/angular-lint)
 
-####Description
+#### Description
 Note: Still in development
 
 Set of ESLint rules to lint source code that uses the angular framework.
 
 Lint to enforce the dependency injection notation, return values for a service, provider, and factory along with some other useful features.
 
-####Rules
+#### Rules
 - `angular-di-notation`: Validates that all angular dependency injection notations are initialized the same
 	- args
 		- [0] on/off {number*}: Tells ESLint if this rule is on or off
@@ -58,13 +57,13 @@ $ npm install angular-lint
 $ N/A bower install angular-lint
 ```
 
-####Todo:
+#### Todo:
 - Update tests
 - Unify valid and invalid tests (be more coherent)
 - Implement N/A rules
 - Add 'inline' rule argument to 'angular-di-notation'
 
-####Other
+#### Other
 
 [![downloads](http://img.shields.io/npm/dm/angular-lint.svg)](https://www.npmjs.org/package/angular-lint)
 [![stories](https://badge.waffle.io/Nate-Wilkins/angular-lint.png)](http://waffle.io/nate-wilkins/angular-lint)
